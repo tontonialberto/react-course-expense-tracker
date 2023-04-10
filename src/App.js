@@ -1,20 +1,16 @@
 import './App.css';
-import ExpenseItem from './components/ExpenseItem';
+import Expenses from './components/Expenses';
 
 function App() {
 
   const EXPENSES = [
-    { title: "Benzina", date: new Date(), priceUSD: 30 },
-    { title: "Pomodori scaduti", date: new Date(), priceUSD: 50 },
-    { title: "Sigarette", date: new Date(), priceUSD: 5.50 },
+    { title: "Benzina", date: new Date(), priceEUR: 30 },
+    { title: "Pomodori scaduti", date: new Date(), priceEUR: 50 },
+    { title: "Sigarette", date: new Date(), priceEUR: 5.50 },
   ]
   return (
     <div className="container">
-      {
-        EXPENSES.map(expense => {
-          return <ExpenseItem key={Math.random()} title={expense.title} date={expense.date} priceUSD={expense.priceUSD}></ExpenseItem>
-        })
-      }
+      <Expenses expenses={EXPENSES}></Expenses>
     </div>
   );
 }
