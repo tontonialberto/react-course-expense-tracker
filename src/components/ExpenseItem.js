@@ -1,3 +1,5 @@
+// @ts-check
+import React from 'react';
 import './ExpenseItem.css';
 import ExpenseDate from './ExpenseDate';
 

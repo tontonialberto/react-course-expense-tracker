@@ -1,3 +1,5 @@
+// @ts-check
+import React from "react";
 import "./Expenses.css";
 import ExpenseItem from './ExpenseItem';
 
@@ -14,8 +16,7 @@ function Expenses(props) {
                         key={Math.random()} 
                         title={expense.title} 
                         date={expense.date} 
-                        priceEUR={expense.priceEUR}>
-                        </ExpenseItem>
+                        priceEUR={expense.priceEUR}/>
                 })
             }
         </div>
