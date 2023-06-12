@@ -1,18 +1,15 @@
 // @ts-check
 
-import React from "react";
+import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 
 function ExpenseForm() {
-    /** @type {string} */
-    let title = "";
+    const [title, setTitle] = useState("");
 
-    /** @type {number} */
-    let amount = 0;
+    const [amount, setAmount] = useState(0);
 
-    /** @type {Date} */
-    let date = new Date();
+    const [date, setDate] = useState("");
 
     /**
      * 
@@ -22,37 +19,33 @@ function ExpenseForm() {
     function formSubmitHandler(event) {
         event.preventDefault();
 
-        console.log({
-            title,
-            amount,
-            date,
-        })
+        setTitle("");
+        setAmount(0);
+        setDate("");
     }
 
     /**
-     * @param {import("react").FormEvent<HTMLInputElement>} event 
+     * @param {import("react").ChangeEvent<HTMLInputElement>} event 
      * @returns {void}
      */
     function titleChangeHandler(event) {
-        title = event.currentTarget.value;
+        setTitle(event.currentTarget.value);
     }
 
     /**
-     * @param {import("react").FormEvent<HTMLInputElement>} event 
+     * @param {import("react").ChangeEvent<HTMLInputElement>} event 
      * @returns {void}
      */
     function amountChangeHandler(event) {
-        amount = parseFloat(event.currentTarget.value);
+        setAmount(parseFloat(event.currentTarget.value));
     }
 
     /**
-     * @param {import("react").FormEvent<HTMLInputElement>} event 
+     * @param {import("react").ChangeEvent<HTMLInputElement>} event 
      * @returns {void}
      */
     function dateChangeHandler(event) {
-        const { value } = event.currentTarget;
-        const [year, month, day] = value.split("-");
-        date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+        setDate(event.currentTarget.value);
     }
 
     return (
@@ -60,15 +53,15 @@ function ExpenseForm() {
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
-                    <input type="text" required onChange={titleChangeHandler} placeholder="Enter expense name here" />
+                    <input type="text" required onChange={titleChangeHandler} placeholder="Enter expense name here" value={title} />
                 </div>
                 <div className="new-expense__control">
                     <label>Amount in EUR</label>
-                    <input type="number" required onChange={amountChangeHandler} defaultValue={0} step={0.01} min={0.01} />
+                    <input type="number" required onChange={amountChangeHandler} step={0.01} min={0.01} value={amount} />
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type="date" required onChange={dateChangeHandler} />
+                    <input type="date" required onChange={dateChangeHandler} value={date.toString()} />
                 </div>
             </div>
             <div className="new-expense__actions">
