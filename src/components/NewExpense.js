@@ -4,11 +4,21 @@ import React from "react";
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
 
-function NewExpense() {
+
+/**
+ * @param {object} props
+ * @param {import("./types").OnExpenseDataHandler} props.onNewExpense
+ */
+function NewExpense(props) {
+
+    /** @type {import("./types").OnExpenseDataHandler} */
+    function formSubmitHandler(expense) {
+        props.onNewExpense(expense);
+    }
 
     return (
         <div className="new-expense">
-            <ExpenseForm/>
+            <ExpenseForm onSubmit={formSubmitHandler}/>
         </div>
     )
 }

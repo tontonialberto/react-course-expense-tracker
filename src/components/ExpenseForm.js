@@ -4,7 +4,11 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 
-function ExpenseForm() {
+/**
+ * @param { object } props
+ * @param { import("./types").OnExpenseDataHandler } props.onSubmit
+ */
+function ExpenseForm(props) {
     const [title, setTitle] = useState("");
 
     const [amount, setAmount] = useState(0);
@@ -12,12 +16,17 @@ function ExpenseForm() {
     const [date, setDate] = useState("");
 
     /**
-     * 
      * @param {import("react").FormEvent<HTMLFormElement>} event 
      * @returns {void}
      */
     function formSubmitHandler(event) {
         event.preventDefault();
+
+        props.onSubmit({
+            title,
+            amount,
+            date: new Date(date),
+        });
 
         setTitle("");
         setAmount(0);
