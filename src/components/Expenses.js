@@ -27,14 +27,20 @@ function Expenses(props) {
                 <ExpensesFilter onFilterChange={expenseFilterChangeHandler} />
                 {
                     expenses.length > 0 ?
-                        expenses.map(expense => {
-                            return <ExpenseItem
-                                key={Math.random()}
-                                title={expense.title}
-                                date={expense.date}
-                                priceEUR={expense.priceEUR} />
-                        })
-                        : <div style={{ color: "white" }}>No Expense found.</div>
+                        (
+                            <ul className="expenses-list">
+                                {
+                                    expenses.map(expense => {
+                                        return <ExpenseItem
+                                            key={Math.random()}
+                                            title={expense.title}
+                                            date={expense.date}
+                                            priceEUR={expense.priceEUR} />
+                                    })
+                                }
+                            </ul>
+                        )
+                        : <div className="expenses-list__fallback">No Expense found.</div>
                 }
             </div>
         </div>

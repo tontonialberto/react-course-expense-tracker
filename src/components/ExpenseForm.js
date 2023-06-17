@@ -7,6 +7,7 @@ import "./ExpenseForm.css";
 /**
  * @param { object } props
  * @param { import("./types").OnExpenseDataHandler } props.onSubmit
+ * @param { () => void } props.onCancel
  */
 function ExpenseForm(props) {
     const [title, setTitle] = useState("");
@@ -14,6 +15,12 @@ function ExpenseForm(props) {
     const [amount, setAmount] = useState(0);
 
     const [date, setDate] = useState("");
+
+    function reset() {
+        setTitle("");
+        setAmount(0);
+        setDate("");
+    }
 
     /**
      * @param {import("react").FormEvent<HTMLFormElement>} event 
@@ -28,9 +35,13 @@ function ExpenseForm(props) {
             date: new Date(date),
         });
 
-        setTitle("");
-        setAmount(0);
-        setDate("");
+        reset();
+    }
+
+    function formCancelHandler() {
+        props.onCancel();
+
+        reset();
     }
 
     /**
@@ -74,7 +85,8 @@ function ExpenseForm(props) {
                 </div>
             </div>
             <div className="new-expense__actions">
-                <button>Add Expense</button>
+                <button type="button" onClick={formCancelHandler}>Cancel</button>
+                <button type="submit">Add Expense</button>
             </div>
         </form>
     )
