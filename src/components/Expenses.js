@@ -41,10 +41,15 @@ function Expenses(props) {
         { name: "December", month: 11 },
     ]
         .map(month => {
-            const nExpenses = filteredExpenses.filter(expense => expense.date.getMonth() === month.month).length;
+            // For every month, the total expense amount.
+            const totalMonthAmount = filteredExpenses
+                .filter(expense => expense.date.getMonth() === month.month)
+                .reduce((total, expense) => {
+                    return total + expense.priceEUR
+                }, 0);
             return {
                 name: month.name,
-                value: nExpenses,
+                value: totalMonthAmount,
             }
         });
 
