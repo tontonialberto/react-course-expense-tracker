@@ -9,7 +9,7 @@ function App() {
 
   const [expenses, setExpenses] = useState([ 
     { title: "Benzina", date: new Date(), priceEUR: 30 },
-    { title: "Pomodori scaduti", date: new Date(), priceEUR: 50 },
+    { title: "Pomodori scaduti", date: new Date("2022-10-08"), priceEUR: 50 },
     { title: "Sigarette", date: new Date(), priceEUR: 5.50 },
   ]);
 

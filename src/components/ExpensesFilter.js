@@ -7,6 +7,7 @@ import './ExpensesFilter.css';
 /**
  * @param {object} props
  * @param {import('./types').OnExpenseFilterChangeHandler} props.onFilterChange
+ * @param {number} props.value
  */
 function ExpensesFilter(props) {
 
@@ -22,7 +23,7 @@ function ExpensesFilter(props) {
         <div className='expenses-filter'>
             <div className='expenses-filter__control'>
                 <label>Filter by year</label>
-                <select onChange={filterChangeHandler}>
+                <select onChange={filterChangeHandler} value={props.value}>
                     <option value='2023'>2023</option>
                     <option value='2022'>2022</option>
                     <option value='2021'>2021</option>
