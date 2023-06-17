@@ -17,6 +17,11 @@ function Expenses(props) {
         return expense.date.getFullYear() === expensesFilter;
     });
 
+    // Sort expenses by date DESC.
+    filteredExpenses.sort((expenseA, expenseB) => {
+        return expenseB.date.getTime() - expenseA.date.getTime();
+    })
+
     // Compute chart data.
     /**
      * @type {{name: string, value: number}[]}
